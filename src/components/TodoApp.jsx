@@ -5,33 +5,15 @@ import EditNoteForm from "./EditNoteForm/EditNoteForm";
 import { SquarePen, Trash } from "lucide-react";
 
 function TodoApp() {
-    const [notas, setNotas] = useState([]);
+    const [notas, setNotas] = useState(() => {
+        const notasGuardadas = localStorage.getItem("mis_notas");
+        return notasGuardadas ? JSON.parse(notasGuardadas) : [];
+    });
     const [notaEditandoId, setNotaEditandoId] = useState(null);
-    const [tareas, setTareas] = useState([]);
-
-    const onHandleClick = () => {
-        setTareas([...tareas, "nueva tarea"]);
-    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("http://localhost:3000/notas");
-
-                if (!response.ok) {
-                    throw new Error(`Error http: ${response.status}`);
-                }
-
-                const data = await response.json();
-                setNotas(data);
-                console.log("NOTAS CARGADAS");
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchData();
-    }, []);
+        localStorage.setItem("mis_notas", JSON.stringify(notas));
+    }, [notas]);
 
     const agregarNota = (nuevaNota) => {
         setNotas([...notas, nuevaNota]);
@@ -39,18 +21,6 @@ function TodoApp() {
 
     const eliminarNota = (id) => {
         setNotas(notas.filter((nota) => nota.id !== id));
-        fetch(`http://localhost:3000/notas/${id}`, {
-            method: "DELETE",
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(
-                        `Error al eliminar la nota: ${response.status}`
-                    );
-                }
-                console.log("Nota eliminada correctamente");
-            })
-            .catch((error) => console.error(error));
     };
 
     const actualizarNota = (notaActualizada) => {
@@ -61,35 +31,12 @@ function TodoApp() {
         );
     };
 
-    const marcarComoCompleta = async (notaId) => {
-        try {
-            const nota = notas.find((nota) => nota.id === notaId);
-            const response = await fetch(
-                `http://localhost:3000/notas/${notaId}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ completed: !nota.completed }),
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error(
-                    `Error al actualizar una nota: ${response.status}`
-                );
-            }
-
-            const notaActualizada = await response.json();
-            setNotas(
-                notas.map((nota) =>
-                    nota.id === notaId ? notaActualizada : nota
-                )
-            );
-        } catch (error) {
-            console.error(error);
-        }
+    const marcarComoCompleta = (notaId) => {
+        setNotas(
+            notas.map((nota) =>
+                nota.id === notaId ? { ...nota, completed: !nota.completed } : nota
+            )
+        );
     };
 
     return (

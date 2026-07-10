@@ -15,24 +15,15 @@ const TodoForm = ({ onAgregarNota }) => {
         }
         
         const newNote = {
+            id: Date.now().toString(),
             titulo: titleNote,
             text: textNote,
             completed: false
         }
 
-        fetch("http://localhost:3000/notas", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newNote)
-        })
-        .then(response => response.json())
-        .then(data => {
-            onAgregarNota(data)
-            setTitleNote("")
-            setTextNote("")
-        })
+        onAgregarNota(newNote)
+        setTitleNote("")
+        setTextNote("")
     }
 
     return(

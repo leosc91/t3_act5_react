@@ -5,34 +5,17 @@ const EditNoteForm = ({ nota, onEditarNota, onCancelar }) => {
     const [tituloEditado, setTituloEditado] = useState(nota.titulo || "");
     const [textoEditado, setTextoEditado] = useState(nota.text || "");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch(
-                `http://localhost:3000/notas/${nota.id}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ 
-                        titulo: tituloEditado, 
-                        text: textoEditado 
-                    }),
-                }
-            );
+        const notaActualizada = {
+            ...nota,
+            titulo: tituloEditado,
+            text: textoEditado
+        };
 
-            if (!response.ok) {
-                throw new Error(`Error http:${response.status}`);
-            }
-
-            const notaActualizada = await response.json();
-            onEditarNota(notaActualizada);
-            onCancelar();
-        } catch (error) {
-            console.error(error);
-        }
+        onEditarNota(notaActualizada);
+        onCancelar();
     };
 
     return (
