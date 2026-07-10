@@ -1,0 +1,32 @@
+{
+  "notas": [
+    {
+      "id": "2",
+      "text": "Hacer ejercicio",
+      "completed": false
+    },
+    {
+      "id": "34de",
+      "text": "Adicion de nueva nota",
+      "completed": false
+    },
+    {
+      "text": "dsd",
+      "completed": false,
+      "id": "aCxAUtIvFrE"
+    },
+    {
+      "titulo": "compras",
+      "text": "pan",
+      "completed": false,
+      "id": "ssvM-muF6CU"
+    },
+    {
+      "titulo": "compras",
+      "text": "azucar",
+      "completed": false,
+      "id": "PLdKpowS8_s"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
