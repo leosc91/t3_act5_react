@@ -11,7 +11,9 @@ La key sirve como un id para cada elemento de la lista, es importante porque le 
 
 c) Explica con tus propias palabras qué hace la función useState y da un ejemplo de dónde la usaste en tu mini aplicación.
 useState es la instrucción que permite guardar y recordar los datos que cambian en un componente, devuelve cosas como una variable con el valor actual y una función para modificar ese valor.
-En el archivo TodoForm.jsx lo usé para atrapar lo que el usuario va escribiendo en el formulario.
+En el archivo **TodoForm.jsx** lo usé para atrapar lo que el usuario va escribiendo en el formulario.
 
 
-```const [textNote, setTextNote] = useState("");```
+```jsx
+const [textNote, setTextNote] = useState("");
+```
