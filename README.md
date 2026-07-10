@@ -1,7 +1,7 @@
 # Web de notas
 Elaboró: Salinas Cenobio Leonel Isaac
 
-Esta es una aplicación web realizada con React para gestionar notas y tareas. Permite crear notas con título y cuerpo de texto, marcarlas como completadas, editar y borrarlas.
+Esta es una aplicación web realizada con React para gestionar notas y tareas. Cuenta con dos funcionalidades principales al momento de agregar una nota, agregar un título para distinguirla de otras, y el cuerpo de texto, donde se escribe lo necesario, una vez una nota sea creada, es posible marcarlas como completadas, editar y borrarlas.
 
 ## Cuestionario
 a) ¿Qué diferencia hay entre props y state en React?
