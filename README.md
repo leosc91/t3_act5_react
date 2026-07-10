@@ -1,4 +1,5 @@
-# Notas
+# Web de notas
+Elaboró: Salinas Cenobio Leonel Isaac
 
 Esta es una aplicación web realizada con React para gestionar notas y tareas. Permite crear notas con título y cuerpo de texto, marcarlas como completadas, editar y borrarlas.
 
